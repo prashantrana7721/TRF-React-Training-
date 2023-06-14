@@ -1,0 +1,183 @@
+TRI.js
+
+1. `import React, { useState } from "react";` - This line imports the `React` library and the `useState` hook from React.
+
+2. `import Card from '../UI/Card';` - This line imports a `Card` component from a file located in the `../UI` directory.
+
+3. `import "./TRI.css";` - This line imports a CSS file called `TRI.css`.
+
+4. `const TrainingRequestInitiator = (props) => {` - This line defines a functional component called `TrainingRequestInitiator` that takes in `props` as an argument.
+
+5. `const [trainingTitle, setTrainingTitle] = useState("");` - This line defines a state variable called `trainingTitle` and a corresponding function called `setTrainingTitle` using the `useState` hook. The initial value of `trainingTitle` is an empty string.
+
+6. `const [trainingType, setTrainingType] = useState("");` - This line defines a state variable called `trainingType` and a corresponding function called `setTrainingType` using the `useState` hook. The initial value of `trainingType` is an empty string.
+
+7. `const [resourceType, setResourceType] = useState("");` - This line defines a state variable called `resourceType` and a corresponding function called `setResourceType` using the `useState` hook. The initial value of `resourceType` is an empty string.
+
+8. `const [duration, setDuration] = useState("");` - This line defines a state variable called `duration` and a corresponding function called `setDuration` using the `useState` hook. The initial value of `duration` is an empty string.
+
+9. `const [purpose, setPurpose] = useState("");` - This line defines a state variable called `purpose` and a corresponding function called `setPurpose` using the `useState` hook. The initial value of `purpose` is an empty string.
+
+10. `const [startDate, setStartDate] = useState("");` - This line defines a state variable called `startDate` and a corresponding function called `setStartDate` using the `useState` hook. The initial value of `startDate` is an empty string.
+
+11. `const [initiatedFrom, setInitiatedFrom] = useState("");` - This line defines a state variable called `initiatedFrom` and a corresponding function called `setInitiatedFrom` using the `useState` hook. The initial value of `initiatedFrom` is an empty string.
+
+12. `const [projectName, setProjectName] = useState("");` - This line defines a state variable called `projectName` and a corresponding function called `setProjectName` using the `useState` hook. The initial value of `projectName` is an empty string.
+
+13. `const [skills, setSkills] = useState("");` - This line defines a state variable called `skills` and a corresponding function called `setSkills` using the `useState` hook. The initial value of `skills` is an empty string.
+
+14. `const [participants, setParticipants] = useState("");` - This line defines a state variable called `participants` and a corresponding function called `setParticipants` using the `useState` hook. The initial value of `participants` is an empty string.
+
+15. `const submitHandler = (event) => {` - This line defines a function called `submitHandler` that takes in an `event` object as an argument.
+
+16. `event.preventDefault();` - This line prevents the default form submission behavior.
+
+17. `const newTrainingRequest = { ... };` - This line creates a new object called `newTrainingRequest` with the form data.
+
+18. `console.log(newTrainingRequest);` - This line logs the new training request data to the console.
+
+19. `setTrainingTitle("");` - This line resets the `trainingTitle` state variable to an empty string.
+
+20. `setTrainingType("");` - This line resets the `trainingType` state variable to an empty string.
+
+21. `setResourceType("");` - This line resets the `resourceType` state variable to an empty string.
+
+22. `setDuration("");` - This line resets the `duration` state variable to an empty string.
+
+23. `setPurpose("");` - This line resets the `purpose` state variable to an empty string.
+
+24. `setStartDate("");` - This line resets the `startDate` state variable to an empty string.
+
+25. `setInitiatedFrom("");` - This line resets the `initiatedFrom` state variable to an empty string.
+
+26. `setProjectName("");` - This line resets the `projectName` state variable to an empty string.
+
+27. `setSkills("");` - This line resets the `skills` state variable to an empty string.
+
+28. `setParticipants("");` - This line resets the `participants` state variable to an empty string.
+
+29. `const handleTitleChange = (event) => {` - This line defines a function called `handleTitleChange` that takes in an `event` object as an argument.
+
+30. `setTrainingTitle(event.target.value);` - This line updates the `trainingTitle` state variable with the new value from the input field.
+
+31. `console.log("Training Title: ", event.target.value);` - This line logs the new value of the `trainingTitle` state variable to the console.
+
+32. `return ( ... );` - This line returns a JSX element that renders a `Card` component with a title and a form.
+
+33. `<h1>Training Request Initiator</h1>` - This line renders a heading element with the text "Training Request Initiator".
+
+34. `<form onSubmit={submitHandler}>` - This line starts a form element with an `onSubmit` event that triggers the `submitHandler` function.
+
+35. `<div>` - This line starts a `div` element.
+
+36. `<label htmlFor="trainingTitle">Training Title : </label>` - This line renders a label element with the text "Training Title : ".
+
+37. `<input type="text" id="trainingTitle" value={trainingTitle} onChange={handleTitleChange} />` - This line renders an input element with the `id` of "trainingTitle", the `value` of the `trainingTitle` state variable, and an `onChange` event that triggers the `handleTitleChange` function.
+
+38. `</div>` - This line ends the `div` element.
+
+39. `<div>` - This line starts a `div` element.
+
+40. `<label htmlFor="trainingType">Training Type : </label>` - This line renders a label element with the text "Training Type : ".
+
+41. `<select id="trainingType" value={trainingType} onChange={handleTypeChange}>` - This line renders a select element with the `id` of "trainingType", the `value` of the `trainingType` state variable, and an `onChange` event that triggers the `handleTypeChange` function.
+
+42. `<option value="">Select Training Type</option>` - This line renders an option element with the value of an empty string and the text "Select Training Type".
+
+43. `<option value="FRW">Future Ready WorkForce</option>` - This line renders an option element with the value of "FRW" and the text "Future Ready WorkForce".
+
+44. `<option value="DRWF">Digital ready Workforce</option>` - This line renders an option element with the value of "DRWF" and the text "Digital ready Workforce".
+
+45. `<option value="On Demand">On Demand</option>` - This line renders an option element with the value of "On Demand" and the text "On Demand".
+
+46. `<option value="Project Specific">Project Specific</option>` - This line renders an option element with the value of "Project Specific" and the text "Project Specific".
+
+47. `</select>` - This line ends the select element.
+
+48. `</div>` - This line ends the `div` element.
+
+49. `<div>` - This line starts a `div` element.
+
+50. `<label htmlFor="resourceType">Resource Type : </label>` - This line renders a label element with the text "Resource Type : ".
+
+51. `<select id="resourceType" value={resourceType} onChange={handleResourceTypeChange}>` - This line renders a select element with the `id` of "resourceType", the `value` of the `resourceType` state variable, and an `onChange` event that triggers the `handleResourceTypeChange` function.
+
+52. `<option value="">Select Resource Type</option>` - This line renders an option element with the value of an empty string and the text "Select Resource Type".
+
+53. `<option value="Fresher">Fresher</option>` - This line renders an option element with the value of "Fresher" and the text "Fresher".
+
+54. `<option value="Lateral">Lateral</option>` - This line renders an option element with the value of "Lateral" and the text "Lateral".
+
+55. `<option value="CDAC">CDAC</option>` - This line renders an option element with the value of "CDAC" and the text "CDAC".
+
+56. `<option value="Interns">Interns</option>` - This line renders an option element with the value of "Interns" and the text "Interns".
+
+57. `<option value="On Bench">On Bench</option>` - This line renders an option element with the value of "On Bench" and the text "On Bench".
+
+58. `</select>` - This line ends the select element.
+
+59. `</div>` - This line ends the `div` element.
+
+60. `<div>` - This line starts a `div` element.
+
+61. `<label htmlFor="duration">Duration (In Days) : </label>` - This line renders a label element with the text "Duration (In Days) : ".
+
+62. `<input type="text" id="duration" value={duration} onChange={handleDurationChange} />` - This line renders an input element with the `id` of "duration", the `value` of the `duration` state variable, and an `onChange` event that triggers the `handleDurationChange` function.
+
+63. `</div>` - This line ends the `div` element.
+
+64. `<div>` - This line starts a `div` element.
+
+65. `<label htmlFor="purpose">Purpose of Training : </label>` - This line renders a label element with the text "Purpose of Training : ".
+
+66. `<input type="text" id="purpose" value={purpose} onChange={handlePurposeChange} />` - This line renders an input element with the `id` of "purpose", the `value` of the `purpose` state variable, and an `onChange` event that triggers the `handlePurposeChange` function.
+
+67. `</div>` - This line ends the `div` element.
+
+68. `<div>` - This line starts a `div` element.
+
+69. `<label htmlFor="startDate">Training Start Date (dd-mm-yyyy) : </label>` - This line renders a label element with the text "Training Start Date (dd-mm-yyyy) : ".
+
+70. `<input type="text" id="startDate" value={startDate} onChange={handleStartDateChange} />` - This line renders an input element with the `id` of "startDate", the `value` of the `startDate` state variable, and an `onChange` event that triggers the `handleStartDateChange` function.
+
+71. `</div>` - This line ends the `div` element.
+
+72. `<div>` - This line starts a `div` element.
+
+73. `<label htmlFor="initiatedFrom">Initiated From : </label>` - This line renders a label element with the text "Initiated From : ".
+
+74. `<input type="text" id="initiatedFrom" value={initiatedFrom} onChange={handleInitiatedFromChange} />` - This line renders an input element with the `id` of "initiatedFrom", the `value` of `initiatedFrom` state variable, and an `onChange` event that triggers the `handleInitiatedFromChange` function.
+
+75. `</div>` - This line ends the `div` element.
+
+76. `<div>` - This line starts a `div` element.
+
+77. `<label htmlFor="projectName">Project Name : </label>` - This line renders a label with the text "Project Name : ".
+
+78. `<input type="text" id="projectName" value={projectName} onChange={handleProjectNameChange} />` - This line renders an input element with the `id` of "projectName", the `value` of the `projectName` state variable, and an `onChange` event that triggers the `handleProjectNameChange` function.
+
+79. `</div>` - This line ends the `div` element.
+
+80. `<div>` - This line starts a `div` element.
+
+81. `<label htmlFor="skills">Skills to be Imparted : </label>` - This line renders a label element with the text "Skills to be Imparted : ".
+
+82. `<input type="text" id="skills" value={skills} onChange={handleSkillsChange} />` - This line renders an input element with the `id` of "skills", the `value` of the `skills` state variable, and an `onChange` event that triggers the `handleSkillsChange` function.
+
+83. `</div>` - This line ends the `div` element.
+
+84. `<div>` - This line starts a `div` element.
+
+85. `<label htmlFor="participants">No. of Participants : </label>` - This line renders a label element with the text "No. of Participants : ".
+
+86. `<input type="text" id="participants" value={participants} onChange={handleParticipantsChange} />` - This line renders an input element with the `id` of "participants", the `value` of the `participants` state variable, and an `onChange` event that triggers the `handleParticipantsChange` function.
+
+87. `</div>` - This line ends the `div` element.
+
+88. `<button type="submit">Submit</button>` - This line renders a button element with the text "Submit" and a `type` of "submit".
+
+89. `</form>` - This line ends the form element.
+
+90. `</Card>` - This line ends the `Card` component. 
+
+91. `export default TrainingRequestInitiator;` - This line exports the `TrainingRequestInitiator` component as the default export of the module.
