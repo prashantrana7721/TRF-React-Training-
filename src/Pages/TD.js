@@ -1,42 +1,57 @@
 import React, { useState } from "react";
-import Card from '../UI/Card';
 import "./TD.css";
 
-const TDTeamSection = () => {
+const TD = (props) => {
   const [assignedTo, setAssignedTo] = useState("");
   const [remark, setRemark] = useState("");
 
   const submitHandler = (event) => {
     event.preventDefault();
-    // handle form submission here
+    const newTask = {
+      assignedTo: assignedTo,
+      remark: remark
+    };
+    console.log(newTask); // log the new task data to the console
+    setAssignedTo("");
+    setRemark("");
+  };
+
+  const handleAssignedToChange = (event) => {
+    setAssignedTo(event.target.value);
+    console.log("Assigned To: ", event.target.value);
+  };
+
+  const handleRemarkChange = (event) => {
+    setRemark(event.target.value);
+    console.log("Remark: ", event.target.value);
   };
 
   return (
-    <Card>
-      <h1>T&D Team Section</h1>
+    <div>
+      <h1>Training and Development Team</h1>
       <form onSubmit={submitHandler}>
         <div>
-          <label htmlFor="assignedTo">Assigned To : </label>
+          <label htmlFor="assignedTo">Assigned To: </label>
           <input
             type="text"
             id="assignedTo"
             value={assignedTo}
-            onChange={(event) => setAssignedTo(event.target.value)}
+            onChange={handleAssignedToChange}
           />
         </div>
         <div>
-          <label htmlFor="remark">Remark : </label>
+          <label htmlFor="remark">Remark: </label>
           <input
             type="text"
             id="remark"
             value={remark}
-            onChange={(event) => setRemark(event.target.value)}
+            onChange={handleRemarkChange}
           />
         </div>
         <button type="submit">Submit</button>
       </form>
-    </Card>
+    </div>
   );
 };
 
-export default TDTeamSection;
+export default TD;

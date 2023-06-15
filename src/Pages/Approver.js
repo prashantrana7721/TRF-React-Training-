@@ -2,14 +2,37 @@ import React, { useState } from "react";
 import Card from '../UI/Card';
 import "./Approver.css";
 
-const ApproverSection = () => {
+const Approver = (props) => {
   const [approverName, setApproverName] = useState("");
   const [remark, setRemark] = useState("");
   const [approvalStatus, setApprovalStatus] = useState("");
 
   const submitHandler = (event) => {
     event.preventDefault();
-    // handle form submission here
+    const newApprovalRequest = {
+      approverName: approverName,
+      remark: remark,
+      approvalStatus: approvalStatus
+    };
+    console.log(newApprovalRequest); // log the new approval request data to the console
+    setApproverName("");
+    setRemark("");
+    setApprovalStatus("");
+  };
+
+  const handleApproverNameChange = (event) => {
+    setApproverName(event.target.value);
+    console.log("Approver Name: ", event.target.value);
+  };
+
+  const handleRemarkChange = (event) => {
+    setRemark(event.target.value);
+    console.log("Remark: ", event.target.value);
+  };
+
+  const handleApprovalStatusChange = (event) => {
+    setApprovalStatus(event.target.value);
+    console.log("Approval Status: ", event.target.value);
   };
 
   return (
@@ -22,7 +45,7 @@ const ApproverSection = () => {
             type="text"
             id="approverName"
             value={approverName}
-            onChange={(event) => setApproverName(event.target.value)}
+            onChange={handleApproverNameChange}
           />
         </div>
         <div>
@@ -31,7 +54,7 @@ const ApproverSection = () => {
             type="text"
             id="remark"
             value={remark}
-            onChange={(event) => setRemark(event.target.value)}
+            onChange={handleRemarkChange}
           />
         </div>
         <div>
@@ -39,7 +62,7 @@ const ApproverSection = () => {
           <select
             id="approvalStatus"
             value={approvalStatus}
-            onChange={(event) => setApprovalStatus(event.target.value)}
+            onChange={handleApprovalStatusChange}
           >
             <option value="">Select Approval Status</option>
             <option value="Approve">Approve</option>
@@ -50,7 +73,7 @@ const ApproverSection = () => {
         <button type="submit">Submit</button>
       </form>
     </Card>
-  );
+ );
 };
 
-export default ApproverSection;
+export default Approver;

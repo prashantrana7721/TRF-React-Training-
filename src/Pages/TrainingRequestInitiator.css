@@ -1,3 +1,8 @@
+body {
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+}
+
 h1 {
   font-size: 2rem;
   font-weight: bold;
@@ -27,7 +32,7 @@ input,
 select {
   padding: 0.5rem;
   border-radius: 5px;
-  border: px solid #ccc;
+  border:2px solid #ccc;
   font-size: 1.2rem;
   margin-bottom: 1rem;
 }
@@ -42,7 +47,7 @@ button[type="submit"] {
   color: white;
   padding: 0.5rem 1rem;
   border: none;
-  border-radius: 5px;
+  border-radius:5px;
   cursor: pointer;
   margin-top: 1rem;
   font-size: 1.2rem;
@@ -71,4 +76,8 @@ button[type="submit"]:hover {
   button[type="submit"] {
     font-size: 1rem;
   }
+}
+
+body {
+  zoom: 60%;
 }

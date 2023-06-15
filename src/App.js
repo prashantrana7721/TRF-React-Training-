@@ -1,19 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
-import TRI from './Pages/TRI';
-import Approver from './Pages/Approver';
-import TD from './Pages/TD'
-import Login from './Pages/Login';
-import Reg from './Pages/Reg';
+import React, { useState } from 'react';
+import Card from './UI/Card';
+import Header from './UI/Header';
+import TrainingRequestInitiator from './Pages/TrainingRequestInitiator';
+
 function App() {
+  const [setTrainingRequests] = useState([]);
+
+  const addTrainingRequestHandler = (trainingRequest) => {
+    setTrainingRequests((prevTrainingRequests) => {
+      return [...prevTrainingRequests, trainingRequest];
+    });
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        {/* <Reg/> */}
-      <TRI />
-      <Approver/>
-      <TD />
-      </header>
+    <div>
+      <Header title="Training Request Form" />
+      <div className="page-content">
+        <Card>
+          <TrainingRequestInitiator onAddTrainingRequest={addTrainingRequestHandler} />
+        </Card>
+      </div>
     </div>
   );
 }
