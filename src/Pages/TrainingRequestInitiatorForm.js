@@ -8,10 +8,11 @@ const TrainingRequestInitiatorForm = (props) => {
     duration: "",
     purpose: "",
     startDate: "",
+    endDate: "",
     initiatedFrom: "",
     projectName: "",
     skills: "",
-    participants: ""
+    participants: "",
   });
 
   const submitHandler = (event) => {
@@ -25,10 +26,11 @@ const TrainingRequestInitiatorForm = (props) => {
       duration: "",
       purpose: "",
       startDate: "",
+      endDate: "",
       initiatedFrom: "",
       projectName: "",
       skills: "",
-      participants: ""
+      participants: "",
     });
   };
 
@@ -111,6 +113,16 @@ const TrainingRequestInitiatorForm = (props) => {
           id="startDate"
           name="startDate"
           value={trainingData.startDate}
+          onChange={handleInputChange}
+        />
+      </div>
+      <div>
+        <label htmlFor="endDate">Training End Date : </label>
+        <input
+          type="date"
+          id="endDate"
+          name="endDate"
+          value={trainingData.endDate}
           onChange={handleInputChange}
         />
       </div>
