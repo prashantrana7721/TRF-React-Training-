@@ -1,27 +1,31 @@
-import React, { useState } from 'react';
-import Card from './UI/Card';
-import Header from './UI/Header';
-import TrainingRequestInitiator from './Pages/TrainingRequestInitiator';
+import React from 'react';
+import { Routes, Route, BrowserRouter as Router } from 'react-router-dom';
 
-function App() {
-  const [setTrainingRequests] = useState([]);
+import LandingPage from './LoginRegis/LandingPage';
+import LoginForm from './LoginRegis/LoginForm';
+import RegistrationForm from './LoginRegis/RegistrationForm';
+import ForgotPass from './LoginRegis/ForgotPass';
+import HomePage from './LoginRegis/HomePage';
+import TrainingRequestInitiator from './Component/TrainingRequestInitiator'
+import './App.css';
 
-  const addTrainingRequestHandler = (trainingRequest) => {
-    setTrainingRequests((prevTrainingRequests) => {
-      return [...prevTrainingRequests, trainingRequest];
-    });
-  };
 
+export default function App() {
   return (
     <div>
-      <Header title="Training Request Form" />
-      <div className="page-content">
-        <Card>
-          <TrainingRequestInitiator onAddTrainingRequest={addTrainingRequestHandler} />
-        </Card>
+      <div style={{ padding: '20px' , display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <h1>Training Request Form</h1>
       </div>
+      <Router>
+        <Routes>
+          <Route exact path="/" element={<LandingPage />} />
+          <Route exact path="/login" element={<LoginForm />} />
+          <Route exact path="/register" element={<RegistrationForm />} />
+          <Route exact path="/forgotpass" element={<ForgotPass />} />
+          <Route exact path="/home" element={<HomePage />} />
+          <Route exact path="/trainreq" element={<TrainingRequestInitiator />} />          
+        </Routes>
+      </Router>
     </div>
   );
 }
-
-export default App;
