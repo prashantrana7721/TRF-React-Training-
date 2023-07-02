@@ -1,14 +1,16 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css'; 
 import './TrainingRequestInitiator.css';
 import '../TrainingRequestInitiator/List.css';
+import { Button } from "react-bootstrap";
+import Dropzone from "react-dropzone";
 
 export default function TrainingRequestInitiator() {
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
   const [data, setData] = useState([]);
+  const [excelFile, setExcelFile] = useState();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -34,6 +36,11 @@ export default function TrainingRequestInitiator() {
     if (date) {
       setEndDate(date);
     }
+  };
+  
+  const handleUpload = (acceptedFiles) => {
+    const file = acceptedFiles[0];
+    setExcelFile(file);
   };
   
   
@@ -121,8 +128,18 @@ export default function TrainingRequestInitiator() {
         </div>
         <br /> {/*Line Space*/}
         <div>
-          <button id="sub_btn" type="button">UPLOAD</button>
-        </div>
+        <Dropzone accept=".xlsx" onDrop={acceptedFiles => handleUpload(acceptedFiles)}>
+  {({ getRootProps, getInputProps }) => (
+    <div {...getRootProps()}>
+      <input {...getInputProps()} />
+      <Button id="sub_btn" type="button">UPLOAD</Button>
+    </div>
+  )}
+</Dropzone>
+{excelFile && (
+        <div style={{ width: '300px', overflow: 'hidden', textOverflow: 'ellipsis' , textAlign: 'center'}}>Uploaded File : {excelFile.name}</div>
+      )}
+    </div>
       </form>
       <div className="table-container">
       <table>
