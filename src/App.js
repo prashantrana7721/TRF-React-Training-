@@ -8,6 +8,7 @@ import ForgotPass from './LoginRegis/ForgotPass';
 import HomePage from './LoginRegis/HomePage';
 import TrainingRequestInitiator from './Component/TrainingRequestInitiator/TrainingRequestInitiator';
 import './App.css';
+import Dashboard from './Component/DashBoard/DashBoard';
 
 
 export default function App() {
@@ -24,6 +25,7 @@ export default function App() {
           <Route exact path="/register" element={<RegistrationForm />} />
           <Route exact path="/forgotpass" element={<ForgotPass />} />
           <Route exact path="/home" element={<HomePage />} />
+          <Route exact path="/dashboard" element={<Dashboard />} /> 
           <Route exact path="/trainreq" element={<TrainingRequestInitiator />} />         
         </Routes>
       </Router>

@@ -9,7 +9,7 @@ export default function RegistrationForm() {
 
     const handleSubmit = (e) => {
       e.preventDefault();
-      nav("/trainreq");
+      nav("/dashboard");
     };
   
     return (

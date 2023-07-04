@@ -8,7 +8,7 @@ export default function LoginForm() {
 
     const handleSubmit = (e) => {
       e.preventDefault();
-      nav("/trainreq");
+      nav("/dashboard");
     };
     return (
         <div className="text-center m-5-auto">
