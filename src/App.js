@@ -6,9 +6,9 @@ import LoginForm from './LoginRegis/LoginForm';
 import RegistrationForm from './LoginRegis/RegistrationForm';
 import ForgotPass from './LoginRegis/ForgotPass';
 import HomePage from './LoginRegis/HomePage';
-import TrainingRequestInitiator from './Component/TrainingRequestInitiator/TrainingRequestInitiator';
+import TrainingRequestInitiator from './Components/TrainingRequestInitiator/TrainingRequestInitiator';
 import './App.css';
-import Dashboard from './Component/DashBoard/DashBoard';
+import Dashboard from './Components/DashBoard/DashBoard';
 
 
 export default function App() {
