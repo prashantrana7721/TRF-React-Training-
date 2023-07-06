@@ -282,12 +282,11 @@ export default function TrainingRequestInitiator() {
             SUBMIT
           </Button>
         </div>
-        <br /> {/*Line Space*/}
-        <div>
+        {/* <div>
           <Button id="sub_btn" type="button">
             NEXT
           </Button>
-        </div>
+        </div> */}
         <br /> {/*Line Space*/}
         <div>
           <Link to="/uploadexcel">

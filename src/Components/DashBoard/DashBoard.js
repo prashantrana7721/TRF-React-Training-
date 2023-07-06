@@ -18,7 +18,7 @@ export default function Dashboard() {
             <span>New Request</span>
           </button>
         </Link>
-        <Link to="/participantdetails">
+        <Link to="/uploadexcel">
           <button className="primary-button" id="reg_btn">
             <span>Participant Details</span>
           </button>
