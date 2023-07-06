@@ -1,48 +1,135 @@
-import React, { useState } from 'react';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css'; 
-import './TrainingRequestInitiator.css';
-import '../TrainingRequestInitiator/List.css';
+import React, { useContext, useState } from "react";
+import "react-datepicker/dist/react-datepicker.css";
+import "./TrainingRequestInitiator.css";
+import "../TrainingRequestInitiator/List.css";
 import { Button } from "react-bootstrap";
 import Dropzone from "react-dropzone";
-import TrainingRequestList from './TrainingRequestList';
+// import TrainingRequestList from './TrainingRequestList';
+import { Link, useNavigate } from "react-router-dom";
+import { TrfContext } from "../Store/TrfProvider";
 
 export default function TrainingRequestInitiator() {
-  const [startDate, setStartDate] = useState(null);
-  const [endDate, setEndDate] = useState(null);
-  const [data, setData] = useState([]);
+  const { addTrf, trfData } = useContext(TrfContext);
+  // const [ StartDate, setStartDate ] = useState(null);
+  // const [ EndDate, setEndDate ] = useState(null);
+  // const [ data , setData ] = useState([]);
   const [excelFile, setExcelFile] = useState();
+
+  const nav = useNavigate();
+  const [userInput, setUserInput] = useState({
+    enteredTrainingTitle: "",
+
+    enteredTrainingType: "",
+
+    enteredResourceType: "",
+
+    enteredDuration: 0,
+
+    enteredPurposeOfTraining: "",
+
+    enteredStartDate: "",
+
+    enteredEndDate: "",
+
+    enteredInitiatedFrom: "",
+
+    enteredProjectName: "",
+
+    enteredSkills: "",
+
+    enteredCount: 0,
+  });
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    const formData = new FormData(event.target);
-    const newData = Object.fromEntries(formData.entries());
-    newData.startDate = startDate ? new Date(startDate).toLocaleDateString() : "";
-    newData.endDate = endDate ? new Date(endDate).toLocaleDateString() : "";
-    setData((prevData) => [...prevData, newData]);
-    setStartDate(null);
-    setEndDate(null);
-    event.target.reset();
+    const newTrf = {
+      id: trfData.length + 1,
+      trainingTitle: userInput.enteredTrainingTitle,
+      TrainingType: userInput.enteredTrainingType,
+      ResourceType: userInput.enteredResourceType,
+      Duration: userInput.enteredDuration,
+      PurposeOfTraining: userInput.enteredPurposeOfTraining,
+      StartDate: userInput.enteredStartDate,
+      EndDate: userInput.enteredEndDate,
+      InitiatedFrom: userInput.enteredInitiatedFrom,
+      ProjectName: userInput.enteredProjectName,
+      Skills: userInput.enteredSkills,
+      Count: userInput.enteredCount,
+    };
+    addTrf(newTrf);
+    nav("/dashboard");
   };
 
-  const handleStartDateChange = (date) => {
-    if (date) {
-      setStartDate(date);
-    }
+  const handleTrainingTitle = (event) => {
+    setUserInput((prevState) => {
+      return { ...prevState, enteredTrainingTitle: event.target.value };
+    });
   };
 
-  const handleEndDateChange = (date) => {
-    if (date) {
-      setEndDate(date);
-    }
+  const handleTrainingType = (event) => {
+    setUserInput((prevState) => {
+      return { ...prevState, enteredTrainingType: event.target.value };
+    });
+  };
+
+  const handleResourceType = (event) => {
+    setUserInput((prevState) => {
+      return { ...prevState, enteredResourceType: event.target.value };
+    });
+  };
+
+  const handleDuration = (event) => {
+    setUserInput((prevState) => {
+      return { ...prevState, enteredDuration: event.target.value };
+    });
+  };
+
+  const handlePurposeOfTraining = (event) => {
+    setUserInput((prevState) => {
+      return { ...prevState, enteredPurposeOfTraining: event.target.value };
+    });
+  };
+
+  const handleStartDate = (event) => {
+    setUserInput((prevState) => {
+      return { ...prevState, enteredStartDate: event.target.value };
+    });
+  };
+
+  const handleEndDate = (event) => {
+    setUserInput((prevState) => {
+      return { ...prevState, enteredEndDate: event.target.value };
+    });
+  };
+
+  const handleInitiatedFrom = (event) => {
+    setUserInput((prevState) => {
+      return { ...prevState, enteredInitiatedFrom: event.target.value };
+    });
+  };
+
+  const handleProjectName = (event) => {
+    setUserInput((prevState) => {
+      return { ...prevState, enteredProjectName: event.target.value };
+    });
+  };
+
+  const handleSkills = (event) => {
+    setUserInput((prevState) => {
+      return { ...prevState, enteredSkills: event.target.value };
+    });
+  };
+
+  const handleCount = (event) => {
+    setUserInput((prevState) => {
+      return { ...prevState, enteredCount: event.target.value };
+    });
   };
 
   const handleUpload = (acceptedFiles) => {
     const file = acceptedFiles[0];
     setExcelFile(file);
   };
-  
-  
 
   return (
     <div className="form-container">
@@ -50,12 +137,27 @@ export default function TrainingRequestInitiator() {
       <h5>Enter Training Request Details</h5>
       <form onSubmit={handleSubmit}>
         <div>
-          <label>Training Title :</label><br />
-          <input type="text" name="training_title" required />
+          <label>Training Title :</label>
+          <br />
+          <input
+            type="text"
+            name="trainingTitle"
+            id="trainingTitle"
+            value={userInput.enteredTrainingTitle}
+            onChange={handleTrainingTitle}
+            required
+          />
         </div>
-        <div style={{ marginTop: '10px' }}>
-          <label>Training Type :</label><br />
-          <select name="training_type" required>
+        <div style={{ marginTop: "10px" }}>
+          <label>Training Type :</label>
+          <br />
+          <select
+            name="TrainingType"
+            id="TrainingType"
+            value={userInput.enteredTrainingType}
+            onChange={handleTrainingType}
+            required
+          >
             <option value="">Select option</option>
             <option value="1">FRW ( Future Ready WorkForce )</option>
             <option value="2">DRWF ( Digital ready Workforce )</option>
@@ -63,9 +165,16 @@ export default function TrainingRequestInitiator() {
             <option value="4">Project Specific</option>
           </select>
         </div>
-        <div style={{ marginTop: '10px' }}>
-          <label>Resource Type :</label><br />
-          <select name="resource_type" required>
+        <div style={{ marginTop: "10px" }}>
+          <label>Resource Type :</label>
+          <br />
+          <select
+            name="ResourceType"
+            id="ResourceType"
+            value={userInput.enteredResourceType}
+            onChange={handleResourceType}
+            required
+          >
             <option value="">Select option</option>
             <option value="1">Fresher</option>
             <option value="2">Lateral</option>
@@ -74,83 +183,158 @@ export default function TrainingRequestInitiator() {
             <option value="5">On Bench</option>
           </select>
         </div>
-        <div style={{ marginTop: '10px' }}>
-          <label>Duration ( In Days ) :</label><br />
-          <input type="number" name="duration" required />
-        </div>
-        <div style={{ marginTop: '10px' }}>
-          <label>Purpose Of Training :</label><br />
-          <textarea name="purpose" required></textarea>
-        </div>
-        <div style={{ marginTop: '10px' }}>
-          <label>Training Start Date:</label><br />
-          <DatePicker
-            selected={startDate}
-            onChange={handleStartDateChange}
-            dateFormat="dd-MM-yyyy"
+        <div style={{ marginTop: "10px" }}>
+          <label>Duration ( In Days ) :</label>
+          <br />
+          <input
+            type="number"
+            name="Duration"
+            id="Duration"
+            value={userInput.enteredDuration}
+            onChange={handleDuration}
             required
           />
         </div>
-        <div style={{ marginTop: '10px' }}>
-          <label>Training End Date:</label><br />
-          <DatePicker
-            selected={endDate}
-            onChange={handleEndDateChange}
-            dateFormat="dd-MM-yyyy"
+        <div style={{ marginTop: "10px" }}>
+          <label>Purpose Of Training :</label>
+          <br />
+          <textarea
+            name="PurposeOfTraining"
+            id="PurposeOfTraining"
+            value={userInput.enteredPurposeOfTraining}
+            onChange={handlePurposeOfTraining}
+            required
+          ></textarea>
+        </div>
+        <div style={{ marginTop: "10px" }}>
+          <label>Training Start Date:</label>
+          <br />
+          <input
+            type="date"
+            name="StartDate"
+            id="StartDate"
+            onChange={handleStartDate}
+            value={userInput.enteredStartDate}
             required
           />
         </div>
-
-        <div style={{ marginTop: '10px' }}>
-          <label>Initiated From :</label><br />
-          <input type="text" name="initiated_from" required />
+        <div style={{ marginTop: "10px" }}>
+          <label>Training End Date:</label>
+          <br />
+          <input
+            type="date"
+            name="EndDate"
+            id="EndDate"
+            onChange={handleEndDate}
+            value={userInput.enteredEndDate}
+            required
+          />
         </div>
-        <div style={{ marginTop: '10px' }}>
-          <label>Project Name (In Case Of Project Specific) :</label><br />
-          <input type="text" name="project_name" />
+        <div style={{ marginTop: "10px" }}>
+          <label>Initiated From :</label>
+          <br />
+          <input
+            type="text"
+            name="InitiatedFrom"
+            id="InitiatedFrom"
+            value={userInput.enteredInitiatedFrom}
+            onChange={handleInitiatedFrom}
+            required
+          />
         </div>
-        <div style={{ marginTop: '10px' }}>
-          <label>Skills To Be Imparted :</label><br />
-          <textarea name="skills" required></textarea>
+        <div style={{ marginTop: "10px" }}>
+          <label>Project Name (In Case Of Project Specific) :</label>
+          <br />
+          <input
+            type="text"
+            name="ProjectName"
+            id="ProjectName"
+            value={userInput.enteredProjectName}
+            onChange={handleProjectName}
+          />
         </div>
-        <div style={{ marginTop: '10px' }}>
-          <label>No. Of Participants :</label><br />
-          <input type="number" name="participants" required />
+        <div style={{ marginTop: "10px" }}>
+          <label>Skills To Be Imparted :</label>
+          <br />
+          <textarea
+            name="Skills"
+            id="Skills"
+            value={userInput.enteredSkills}
+            onChange={handleSkills}
+            required
+          ></textarea>
+        </div>
+        <div style={{ marginTop: "10px" }}>
+          <label>No. Of Participants :</label>
+          <br />
+          <input
+            type="number"
+            name="Count"
+            id="Count"
+            value={userInput.enteredCount}
+            onChange={handleCount}
+            required
+          />
         </div>
         <br /> {/*Line Space*/}
         <div>
-          <button id="sub_btn" type="submit">SUBMIT</button>
+          <Button id="sub_btn" type="submit">
+            SUBMIT
+          </Button>
         </div>
         <br /> {/*Line Space*/}
         <div>
-          <button id="sub_btn" type="button">NEXT</button>
+          <Button id="sub_btn" type="button">
+            NEXT
+          </Button>
         </div>
         <br /> {/*Line Space*/}
         <div>
-        <Dropzone accept=".xlsx" onDrop={acceptedFiles => handleUpload(acceptedFiles)}>
-        {({ getRootProps, getInputProps }) => (
-        <div {...getRootProps()}>
-        <input {...getInputProps()} />
-        <Button id="sub_btn" type="button">UPLOAD</Button>
+          <Link to="/uploadexcel">
+            <Button id="sub_btn" type="button">
+              UPLOAD
+            </Button>
+          </Link>
         </div>
-        )}
-        </Dropzone>
-        {excelFile && (
-        <div style={{ width: '300px', overflow: 'hidden', textOverflow: 'ellipsis' , textAlign: 'center'}}>Uploaded File : {excelFile.name}</div>
-        )}
-        </div>
-        </form>
+        <br /> {/*Line Space*/}
         <div>
+          {/* <Dropzone
+            accept=".xlsx"
+            onDrop={(acceptedFiles) => handleUpload(acceptedFiles)}
+          >
+            {({ getRootProps, getInputProps }) => (
+              <div {...getRootProps()}>
+                <input {...getInputProps()} />
+                <Button id="sub_btn" type="button">
+                  UPLOAD
+                </Button>
+              </div>
+            )}
+          </Dropzone> */}
+          {/* {excelFile && (
+            <div
+              style={{
+                width: "300px",
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                textAlign: "center",
+              }}
+            >
+              Uploaded File : {excelFile.name}
+            </div>
+          )} */}
+        </div>
+      </form>
+      {/* <div>
           <TrainingRequestList data={data} />
-        </div>
-      </div>
-    );
-  }
-
+        </div> */}
+    </div>
+  );
+}
 
 // import React, { useState } from 'react';
 // import DatePicker from 'react-datepicker';
-// import 'react-datepicker/dist/react-datepicker.css'; 
+// import 'react-datepicker/dist/react-datepicker.css';
 // import './TrainingRequestInitiator.css';
 // import '../TrainingRequestInitiator/List.css';
 // import { Button } from "react-bootstrap";
@@ -191,8 +375,6 @@ export default function TrainingRequestInitiator() {
 //     const file = acceptedFiles[0];
 //     setExcelFile(file);
 //   };
-  
-  
 
 //   return (
 //     <div className="form-container">
@@ -297,12 +479,9 @@ export default function TrainingRequestInitiator() {
 //     );
 //   }
 
-
-
-
 // import React, { useState } from 'react';
 // import DatePicker from 'react-datepicker';
-// import 'react-datepicker/dist/react-datepicker.css'; 
+// import 'react-datepicker/dist/react-datepicker.css';
 // import './TrainingRequestInitiator.css';
 // import '../TrainingRequestInitiator/List.css';
 // import { Button } from "react-bootstrap";
@@ -342,8 +521,6 @@ export default function TrainingRequestInitiator() {
 //     const file = acceptedFiles[0];
 //     setExcelFile(file);
 //   };
-  
-  
 
 //   return (
 //     <div className="form-container">
@@ -482,8 +659,6 @@ export default function TrainingRequestInitiator() {
 //   );
 // }
 
-
-
 // import React, { useState, useEffect } from "react";
 // import DatePicker from "react-datepicker";
 // import "react-datepicker/dist/react-datepicker.css";
@@ -491,7 +666,6 @@ export default function TrainingRequestInitiator() {
 // import * as XLSX from "xlsx";
 // import ExcelData from './ExcelData'
 // import { useNavigate } from "react-router-dom";
-
 
 // export default function TrainingRequestInitiator() {
 //   const [startDate, setStartDate] = useState(null);
@@ -503,12 +677,12 @@ export default function TrainingRequestInitiator() {
 //   const handleFileUpload = (event) => {
 //     const file = event.target.files[0];
 //     const reader = new FileReader();
-  
+
 //     reader.onload = (e) => {
 //       const workbook = XLSX.read(e.target.result, { type: "binary" });
 //       const worksheet = workbook.Sheets[workbook.SheetNames[0]];
 //       const data = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
-  
+
 //       setFileData(data);
 //       setRows(
 //         data.map((row, index) => (
@@ -521,7 +695,7 @@ export default function TrainingRequestInitiator() {
 //       );
 //       nav("/exceldata");
 //     };
-  
+
 //     reader.readAsBinaryString(file);
 //   };
 

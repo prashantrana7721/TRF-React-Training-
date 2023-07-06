@@ -1,12 +1,14 @@
-import React from 'react';
-import 'react-datepicker/dist/react-datepicker.css'; 
-import './TrainingRequestInitiator.css';
-import '../TrainingRequestInitiator/List.css';
+import React from "react";
+import "react-datepicker/dist/react-datepicker.css";
+import "./TrainingRequestInitiator.css";
+import "../TrainingRequestInitiator/List.css";
 
 const TrainingRequestList = ({ data }) => {
   return (
     <div className="table-container">
-      <div style={{ fontSize: '20px', marginBottom: '2rem' }}>Training Request Initiator Data</div>
+      <div style={{ fontSize: "20px", marginBottom: "2rem" }}>
+        Training Request Initiator Data
+      </div>
       <table>
         <thead>
           <tr>
@@ -47,9 +49,8 @@ const TrainingRequestList = ({ data }) => {
 
 export default TrainingRequestList;
 
-
 // import React from 'react';
-// import 'react-datepicker/dist/react-datepicker.css'; 
+// import 'react-datepicker/dist/react-datepicker.css';
 // import './TrainingRequestInitiator.css';
 // import '../TrainingRequestInitiator/List.css';
 
